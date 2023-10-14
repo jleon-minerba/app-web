@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app-web';
+  data: any[] = ["test"];
+
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit() {
+    this.apiService.getData().subscribe((data: any[]) => {
+      this.data = data;
+    });
+  }
 }
